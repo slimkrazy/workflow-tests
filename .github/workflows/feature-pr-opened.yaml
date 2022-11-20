@@ -4,7 +4,6 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
 
-    workflows: ['Lint', 'Test']
-    branches: [development]
-    types:
-      - completed
+jobs:
+  lint:
+  uses: slimkrazy/workflow-tests/.github/workflows/lint@master
