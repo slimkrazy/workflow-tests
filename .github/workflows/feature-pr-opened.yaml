@@ -8,8 +8,8 @@ on:
 
 jobs:
   lint:
-    uses: slimkrazy/workflow-tests/.github/workflows/lint.yaml@feature/workflows
+    uses: slimkrazy/workflow-tests/.github/workflows/lint.yaml@development
 
   test:
-    uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@feature/workflows
+    uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@development
 
