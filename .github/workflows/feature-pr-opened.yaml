@@ -6,4 +6,4 @@ on:
 
 jobs:
   lint:
-    uses: slimkrazy/workflow-tests/.github/workflows/lint.yaml
+    uses: slimkrazy/workflow-tests/.github/workflows/lint.yaml@feature/workflows
