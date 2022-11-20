@@ -15,5 +15,5 @@ jobs:
       - name: Run the  Linter
         run: |
           echo "Branch name follows"
-          echo "${{github.ref_name}}"
+          echo "${{github.head_ref}}"
           echo "Run the linter"
