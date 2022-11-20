@@ -1,13 +1,15 @@
-name: Check feature work
+name: Validate development work
 
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+    branches:
+      - development
 
 jobs:
   lint:
     uses: slimkrazy/workflow-tests/.github/workflows/lint.yaml@feature/workflows
 
   test:
-    needs: lint
     uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@feature/workflows
+

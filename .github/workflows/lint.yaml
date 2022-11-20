@@ -17,3 +17,4 @@ jobs:
           echo "Branch name follows"
           echo "${{github.head_ref}}"
           echo "Run the linter"
+          exit 1
