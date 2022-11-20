@@ -7,9 +7,6 @@ on:
 
 jobs:
 
-  lint:
-    uses: slimkrazy/workflow-tests/.github/workflows/lint.yaml@development
-
   test:
     uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@development
 
@@ -30,3 +27,20 @@ jobs:
       - name: Deploy to QA
         run: |
           echo "Shared deployment job, deploying to QA"
+
+  tag:
+
+    runs-on: ubuntu-latest
+    needs:
+      - deploy-qa
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: tag changes
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions"
+          git tag -a v${{github.run_id}} -m "build ${{github.run_id}}"
+          git push origin v${{github.run_id}}
