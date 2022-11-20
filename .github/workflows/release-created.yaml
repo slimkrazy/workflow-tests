@@ -34,5 +34,5 @@ jobs:
         git config --local user.name "github-actions"
         git fetch --tags
         git status
-        git merge --no-commit --no-ff ${{ github.ref_name }}
+        git merge ${{ github.ref_name }}
         git push origin master
