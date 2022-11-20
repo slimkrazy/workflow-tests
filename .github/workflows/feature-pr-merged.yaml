@@ -1,15 +1,20 @@
-name: Validate development work
+name: Build & Push images
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  push:
     branches:
       - development
 
 jobs:
+
   lint:
     uses: slimkrazy/workflow-tests/.github/workflows/lint.yaml@development
 
   test:
     uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@development
 
+  deploy-qa:
+    needs:
+      - test
+    steps:
+      run: echo "Shared deployment job"
