@@ -42,5 +42,6 @@ jobs:
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions"
-          git tag -a v${{github.run_id}} -m "build ${{github.run_id}}"
-          git push origin v${{github.run_id}}
+          d=`date +%Y%m%d%H%M`
+          git tag -a $d -m "build $d"
+          git push origin $d
