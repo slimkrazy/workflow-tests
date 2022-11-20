@@ -1,0 +1,16 @@
+name: Lint
+
+on: [workflow_call]
+
+jobs:
+
+  lint:
+    name: Lint the code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run the  Linter
+        run: echo "Run the linter"
