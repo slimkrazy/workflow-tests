@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Build all images
         run: |
-          echo "Shared deployment job, deploying to QA"
+          echo "Shared build and publish job, shared deployment job, deploying to QA"
 
   deploy-qa:
     runs-on: ubuntu-latest

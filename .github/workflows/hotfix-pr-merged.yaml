@@ -1,0 +1,21 @@
+name: Build & publish hotfix
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    run_if:
+      if: startsWith(github.head_ref, 'hotfix/')
+    uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@development
+
+  build-images:
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - name: Build all images
+        run: |
+          echo "Shared build and publish job"

@@ -9,7 +9,8 @@ jobs:
   determine-image-tag:
     runs-on: ubuntu-latest
     outputs:
-      imageTag: ${{ steps.get-image-sha.outputs.sha }}
+      image-tag: ${{ steps.get-image-sha.outputs.sha }}
+
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -20,6 +21,7 @@ jobs:
       id: get-image-sha
       run: |
         echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
 
   update-eu-central-1:
     runs-on: ubuntu-latest
@@ -33,12 +35,8 @@ jobs:
 
     - name: update-eu-central-1
       run: |
-        echo "Updating eu-central-1 with version: ${{needs.determine-image-tag.outputs.imageTag}}"
-        git rev-parse --short HEAD
+        echo "Updating eu-central-1 with version: ${{needs.determine-image-tag.outputs.image-tag}}"
 
-    - name: update-eu-central-1
-      run: |
-        echo "Updating eu-central-1"
 
   merge-to-master:
     runs-on: ubuntu-latest
