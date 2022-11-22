@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Debug
+      run: |
+        echo "${{ github.ref_name }}, ${{ github.head_ref }}"
+
     - name: Validate master branch merge attempt
       if: ${{ github.ref_name == 'master' }}
       run: |
