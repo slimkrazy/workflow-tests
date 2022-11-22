@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Validate master branch merge attempt
-      if: ${{ github.ref_name == 'master' && (!startsWith(github.head_ref, 'hotfix/') &&  github.head_ref != 'development') }}
+      if: ${{ github.ref_name == 'master' }}
       run: |
         echo "Invalid branch merge attempt."
         exit 1
