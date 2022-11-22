@@ -6,6 +6,24 @@ on:
       - master
 
 jobs:
+    determine-image-tag:
+    runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.get-image-sha.outputs.sha }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Pull image sha
+        id: get-image-sha
+        - uses: tonynguyenit18/github-action-custom-vars@v1
+        - run: echo $RECENT_MERGED_BRANCH_NAME
+        run: |
+          echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
   test:
     run_if:
       if: startsWith(github.head_ref, 'hotfix/')
