@@ -13,8 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Validate branch name and target branch combination
-      if: (github.ref_name == 'master' && (!startsWith(github.head_ref, 'hotfix/') &&  github.head_ref == 'development'))
+    - name: Validate master branch merge attempt
+      if: (github.ref_name == 'master' && (!startsWith(github.head_ref, 'hotfix/') &&  github.head_ref != 'development'))
       run: |
-        echo "Invalid branch merge attempt"
+        echo "Invalid branch merge attempt."
+        exit 1
+
+    - name: Validate development branch merge attempt
+      if: (github.ref_name == 'development' && !startsWith(github.head_ref, 'feature/') && !startsWith(github.head_ref, 'chore/') && !startsWith(github.head_ref, 'fix/'))
+      run: |
+        echo "Invalid branch merge attempt."
         exit 1
