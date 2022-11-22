@@ -14,7 +14,6 @@ jobs:
 
     steps:
     - name: Validate branch name and target branch combination
-    run_if:
       if: (github.ref_name == 'master' && (!startsWith(github.head_ref, 'hotfix/') &&  github.head_ref == 'development'))
       run: |
         echo "Invalid branch merge attempt"
