@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Debug
       run: |
-        echo "${{ github.ref_name }}, ${{ github.head_ref }}"
+        echo "${{ github.base_ref }}, ${{ github.head_ref }}"
 
     - name: Validate master branch merge attempt
       if: ${{ github.ref_name == 'master' }}
