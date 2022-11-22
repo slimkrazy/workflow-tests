@@ -1,0 +1,27 @@
+name: Hotfix test & build
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - master
+
+jobs:
+  validate-head-branch:
+    run_if:
+      if: startsWith(github.head_ref, 'hotfix/') == false
+    run: |
+      echo "Invalid head branch ${{ github.head_ref }}"
+      exit 1
+
+
+  lint:
+    needs:
+      - validate-head-branch
+    uses: slimkrazy/workflow-tests/.github/workflows/lint.yaml@development
+
+
+  test:
+    needs:
+      - validate-head-branch
+    uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@development
