@@ -7,15 +7,22 @@ on:
 
 jobs:
 
-  set-vars:
+  determine-merged-branch:
     runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.id-determine-merged-branch-name.outputs.branch }}
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: tonynguyenit18/github-action-custom-vars@v1
-      - run: echo $RECENT_MERGED_BRANCH_NAME
+      - name: Determine merged branch name
+        id: id-determine-merged-branch-name
+        uses: tonynguyenit18/github-action-custom-vars@v1
+        run: |
+          echo "branch=$RECENT_MERGED_BRANCH_NAME" >> $GITHUB_OUTPUT
+
 
   test:
-    if: ${{ startsWith(github.ref_name, 'hotfix/') }}
+    needs: determine-merged-branch
+    if: ${{ startsWith(needs.determine-merged-branch.outputs.branch, 'hotfix/') }}
     uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@development
 
 
