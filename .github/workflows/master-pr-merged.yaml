@@ -30,7 +30,7 @@ jobs:
 
     uses: slimkrazy/workflow-tests/.github/workflows/build-images.yaml@development
     with:
-      image-tag: ${{steps.generate-image-tag.outputs.tag}}
+      image-tag: ${{needs.generate-image-tag.outputs.tag}}
 
   tag:
     needs:

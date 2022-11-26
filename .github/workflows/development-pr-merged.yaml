@@ -5,6 +5,11 @@ on:
     branches:
       - development
 
+
+concurrency:
+  group: qa-deploy
+
+
 jobs:
 
   test:

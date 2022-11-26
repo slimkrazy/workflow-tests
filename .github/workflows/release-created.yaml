@@ -4,6 +4,11 @@ on:
   release:
     types: [created]
 
+
+concurrency:
+  group: prod-release
+
+
 jobs:
 
   update-eu-central-1:
