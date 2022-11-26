@@ -17,11 +17,11 @@ jobs:
     - name: Validate development branch merge attempt
       if: ${{ github.base_ref == 'development' && !startsWith(github.head_ref, 'feature/') && !startsWith(github.head_ref, 'chore/') && !startsWith(github.head_ref, 'fix/') && github.head_ref != 'master' }}
       run: |
-        echo "Invalid branch merge attempt. "
+        echo "Invalid branch merge attempt. If the branch is a hotfix, please change base branch to master"
         exit 1
 
     - name: Validate master branch merge attempt
-      if: ${{ github.base_ref == 'master' && (!startsWith(github.head_ref, 'hotfix/') || github.head_ref != 'development')}}
+      if: ${{ github.base_ref == 'master' && !(startsWith(github.head_ref, 'hotfix/') || github.head_ref == 'development')}}
       run: |
         echo "Invalid branch merge attempt. Only development and hotfixes permitted to be merged to master"
         exit 1
