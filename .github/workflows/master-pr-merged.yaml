@@ -7,12 +7,12 @@ on:
 
 jobs:
 
-  yarp:
+  set-vars:
     runs-on: ubuntu-latest
     steps:
-      - name: output stuff
-        run: |
-          echo "${{github.ref_name}} -- ${{github.head_ref}} --  "
+      - uses: actions/checkout@v2
+      - uses: tonynguyenit18/github-action-custom-vars@v1
+      - run: echo $RECENT_MERGED_BRANCH_NAME
 
   test:
     if: ${{ startsWith(github.ref_name, 'hotfix/') }}
