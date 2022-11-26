@@ -1,0 +1,54 @@
+name: Build container images
+
+on:
+  workflow_call:
+    inputs:
+      image-tag:
+        required: true
+        type: string
+
+jobs:
+
+  build-application-image:
+    name: Build application image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build application image
+        run: |
+          echo "Building app image off branch/tag: ${{ github.ref }}. Image tag: ${{inputs.image-tag }}"
+
+  build-reverse-proxy-image:
+    name: Build nginx image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build nginx image
+        run: |
+          echo "Building nginx image off branch/tag: ${{ github.ref }}. Image tag: ${{inputs.image-tag }}"
+
+  publish-app-image:
+    name: Build app image
+    runs-on: ubuntu-latest
+    needs: build-application-image
+
+    steps:
+      - name: Publish to ECR
+        run: |
+          echo "Publish app Image to ECR"
+
+  publish-reverse-proxy-image:
+    name: Build nginx image
+    runs-on: ubuntu-latest
+    needs: build-reverse-proxy-image
+
+    steps:
+      - name: Publish to ECR
+        run: |
+          echo "Publish nginx Image to ECR"
