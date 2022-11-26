@@ -1,0 +1,25 @@
+name: Tag
+
+on:
+  workflow_call:
+    inputs:
+      git-tag:
+        required: true
+        type: string
+
+jobs:
+
+  tag:
+    name: Tag the repo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: tag changes
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions"
+          git tag -a $d -m "build ${{inputs.git-tag }}"
+          git push origin ${{inputs.git-tag }}
