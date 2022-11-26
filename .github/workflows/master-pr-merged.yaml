@@ -35,4 +35,7 @@ jobs:
   tag:
     needs:
       - build-images
+      - generate-image-tag
     uses: slimkrazy/workflow-tests/.github/workflows/create-tag.yaml@development
+    with:
+      git-tag: ${{needs.generate-image-tag.outputs.tag}}
