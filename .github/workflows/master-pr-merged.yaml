@@ -7,6 +7,13 @@ on:
 
 jobs:
 
+  yarp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: output stuff
+        run: |
+          echo "${{github.ref_name}} -- ${{github.head_ref}} --  "
+
   test:
     if: ${{ startsWith(github.ref_name, 'hotfix/') }}
     uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@development
