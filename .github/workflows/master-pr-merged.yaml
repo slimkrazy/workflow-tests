@@ -13,6 +13,7 @@ jobs:
       branch: ${{ steps.id-determine-merged-branch-name.outputs.branch }}
 
     steps:
+      - uses: actions/checkout@v3
       - name: Determine merged branch name
         id: id-determine-merged-branch-name
         uses: tonynguyenit18/github-action-custom-vars@v1
