@@ -14,9 +14,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Determine merged branch name
-        id: id-determine-merged-branch-name
         uses: tonynguyenit18/github-action-custom-vars@v1
+
+      - id: id-determine-merged-branch-name
         run: |
           echo "branch=$RECENT_MERGED_BRANCH_NAME" >> $GITHUB_OUTPUT
 
