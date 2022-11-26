@@ -8,7 +8,7 @@ on:
 jobs:
 
   test:
-    if: ${{ startsWith(github.head_ref, 'hotfix/') }}
+    if: ${{ startsWith(github.ref_name, 'hotfix/') }}
     uses: slimkrazy/workflow-tests/.github/workflows/test.yaml@development
 
 
