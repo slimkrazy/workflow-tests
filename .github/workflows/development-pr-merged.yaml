@@ -13,6 +13,7 @@ jobs:
 
   generate-image-tag:
     runs-on: ubuntu-latest
+    id: id-generate-image-tag
     outputs:
       tag: ${{ steps.gen-tag-name.outputs.tag }}
 
@@ -39,7 +40,7 @@ jobs:
     steps:
       - name: Deploy to QA
         run: |
-          echo "Shared deployment job, deploying to QA using image tag: ${{ jobs.generate-tag-name.outputs.tag }}"
+          echo "Shared deployment job, deploying to QA using image tag: ${{ jobs.id-generate-image-tag.outputs.tag }}"
 
 
   tag:
