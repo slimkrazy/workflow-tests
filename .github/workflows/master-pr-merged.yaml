@@ -77,4 +77,5 @@ jobs:
         with:
           branch: master
           title: Merge hotfix ${{ needs.generate-hotfix-image-tag.outputs.tag }} [skip-ci]
-          body: Automated changes triggered by hotfix build ${{ needs.generate-hotfix-image-tag.outputs.tag }}.
+          body: Automated changes triggered by hotfix build ${{ needs.generate-hotfix-image-tag.outputs.tag }}
+          draft: true
