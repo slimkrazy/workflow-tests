@@ -69,13 +69,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: development
+          ref: master
 
 
       - name: Open Hotfix PR to development branch
         uses: peter-evans/create-pull-request@v4
         with:
-          branch: master
+          branch: development
           title: Merge hotfix ${{ needs.generate-hotfix-image-tag.outputs.tag }} [skip-ci]
           body: Automated changes triggered by hotfix build ${{ needs.generate-hotfix-image-tag.outputs.tag }}
           draft: true
