@@ -83,6 +83,6 @@ jobs:
         with:
           base: development
           branch: chore/auto-merge
-          title: Merge hotfix ${{ needs.generate-hotfix-image-tag.outputs.tag }} [skip-ci]
-          body: Automated changes triggered by hotfix build ${{ needs.generate-hotfix-image-tag.outputs.tag }}
-          draft: true
+          title: Merge hotfix ${{ needs.generate-hotfix-image-tag.outputs.tag }}
+          body: Automated changes triggered by hotfix build ${{ needs.generate-hotfix-image-tag.outputs.tag }} [skip-ci]
+          delete-branch: true
