@@ -75,7 +75,6 @@ jobs:
       - name: Open Hotfix PR to development branch
         uses: peter-evans/create-pull-request@v4
         with:
-          base: development
           branch: master
           title: Merge hotfix ${{ needs.generate-hotfix-image-tag.outputs.tag }} [skip-ci]
           body: Automated changes triggered by hotfix build ${{ needs.generate-hotfix-image-tag.outputs.tag }}.
